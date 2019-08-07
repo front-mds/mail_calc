@@ -1,0 +1,42 @@
+<html>
+	<input type="text" id="string">
+<h3>Find total</h3>
+<button id="total" onclick="totalClick()">Find Total</button>
+<p id="res"></p>
+
+<script>
+	function totalClick (){
+		var str = document.getElementById('string').value;
+		findTotal(str)
+	}
+
+	function findTotal(str){
+		
+
+// console.log(str.match(/\₹.*\-/)[0]);
+// console.log(str[235])
+
+var total = 0;
+while(str.match(/\₹.*\-/)){
+	var value = str.match(/\₹.*\-/)[0];
+	value = value.substr(1,value.length-2)
+	value = value.replace(/,/g, "");
+	value = parseFloat(value)
+	total = total + value
+	str = str.slice(str.match(/\₹.*\-/).index+1)
+	// console.log(str)
+	// break
+	document.getElementById("res").innerHTML = total
+}
+	}
+	
+</script>
+
+<style>
+	#string{
+		height: 52px;
+		width: 320px;
+	}
+</style>
+
+</html>
