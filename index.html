@@ -17,14 +17,22 @@
 // console.log(str[235])
 
 var total = 0;
-while(str.match(/\₹.*\-/)){
-	var value = str.match(/\₹.*\-/)[0];
-	value = value.substr(1,value.length-2)
-	value = value.replace(/,/g, "");
-	value = parseFloat(value)
-	total = total + value
-	str = str.slice(str.match(/\₹.*\-/).index+1)
-	// console.log(str)
+while(str.match(/\₹.*/) ){
+	var value;
+	if(str.match(/\₹.*[\-|\+]/)){
+		value = str.match(/\₹.*[\-|\+]/)[0];
+		value = value.substr(1,value.length-2)
+		value = value.replace(/,/g, "");
+		value = parseFloat(value)
+		console.log(value)
+		total = total + value
+	}
+	
+	
+		str = str.slice(str.match(/\₹.*/).index+1);
+	
+	
+	console.log(str)
 	// break
 	document.getElementById("res").innerHTML = total
 }
